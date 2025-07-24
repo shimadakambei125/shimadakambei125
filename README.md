@@ -36,3 +36,38 @@ Here are some ideas to get you started:
 -Photography
 *Beatboxing
 +Cooking
+
+## Patient Flow Modeller
+
+This repository includes a small application called **Patient Flow Modeller**. The tool reads a CSV file describing the movement of patients through different areas of the department and displays them on a simple map.
+
+### Usage
+
+```
+python3 main.py <path_to_csv>
+```
+
+To run in a non-graphical environment (useful for quick tests) use:
+
+```
+python3 main.py <path_to_csv> --no-gui
+```
+
+### CSV Format
+
+The CSV file should have a header followed by rows with the following columns:
+
+1. `patient_id`
+2. `arrival_time` (ISO format: `YYYY-MM-DDTHH:MM:SS`)
+3. pairs of `location` and `time` columns for each move
+4. `departure_time`
+
+Example:
+
+```
+patient_id,arrival_time,location1,time1,location2,time2,departure_time
+1,2023-07-24T09:00:00,RATS,2023-07-24T09:10:00,RESUS,2023-07-24T09:40:00,2023-07-24T10:00:00
+```
+
+Running the script without `--no-gui` opens a window dividing the map into the following areas: **RATS**, **RESUS**, **MAJORS**, **ACA**, **CHILDREN'S ED** and **UTC**. Each patient is drawn as a small blue circle in the correct area.
+
